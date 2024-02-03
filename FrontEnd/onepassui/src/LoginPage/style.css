@@ -35,10 +35,14 @@
     align-items: center;
     transition: 0.5s;
     border-radius: 20px;
+    
+    
 }
+
 .box:hover{
     width: 450px;
     height: 500px;
+    
 }
 
 @keyframes rotating
@@ -83,17 +87,134 @@
     inset: 60px;
     display: flex;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     flex-direction: column;
     border-radius:10px;
     background: rgba(0,0,0,0.2);
-    box-shadow: inset 10px 20px rgba(0,0,0,.5);
+    box-shadow: inset 0 10px 15px rgba(0,0,0,0.5);
+    overflow: hidden;
     z-index:1000;
     border-botton: 2px solid rgba(255,255,255,0.5);
-    transition: 0.5s
+    transition: 0.5s;
+    
+    
 }
 
 .box::hover .login{
     inset: 40px;
     
+}
+.loginBox{
+    transform: translateY(125px);
+}
+.loginBox:hover{
+    transform: translateY(0px);
+    transition: 0.5s;
+}
+.loginText
+{
+    color: #ffffff;
+    font-family: Roboto;
+    font-size: 30;
+    font-weight: lighter;
+    padding-top: 30px;
+    /* transform: translateY(50); */
+    
+}
+
+.inputFields 
+{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    /* width: 70%; */
+    transition: 0.5s;
+    padding-top: 10px;
+    
+   
+}
+
+.loginText h1{
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+}
+
+.loginText h1 i{
+    color: #ff2770;
+    text-shadow: 0 0 5px #ff2770,
+    0 0 25px #ff2770;
+    padding-right: 10px;
+}
+
+.inputFields input
+{
+    width: 100%;
+    padding: 10px 20px;
+    position: relative;
+    top: 20px;
+    outline: none;
+    border: none;
+    font-size: 1em;
+    color: #fff;
+    background: rgba(0,0,0,0.1);
+    border: 0px solid #464343;
+    border-radius: 8px;
+    /* box-shadow:  0 1px 10px #ff2770; */
+    
+}
+
+.inputFields input::placeholder
+{
+    letter-spacing: 0.1em;
+}
+
+.inputFields input[type='submit']
+{
+    background: #45f3ff;
+    border: 2px solid #45ffff;
+    font-weight: 500;
+    color: #111;
+    bottom: 0px;
+    position: relative;
+    top: -20px;
+    width: 70%;
+    height: 3em;
+    text-align: center;
+    align-items: center;
+}
+.inputFields input[type='submit']:hover
+{
+    box-shadow:  0 1px 15px #45f3ff,
+    0 0 60px #45f3ff;
+    letter-spacing: 0.1em;
+    transition: 0.5s; 
+    cursor: pointer;
+}
+
+.hyperButtons
+{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: inherit;
+    top: -25px;
+    
+}
+
+.hyperButtons a
+{
+    color: #464888;
+    text-decoration: none;
+
+    
+}
+
+.hyperButtons a:nth-child(2)
+{
+    color:#ff2770;
+    font-weight: 600;
 }
