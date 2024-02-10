@@ -1,0 +1,420 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+
+.body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #25252b;
+
+}
+
+@property --a{
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+}
+
+.box
+{
+    position: relative;
+    width: 400px;
+    height:200px;
+    background: repeating-conic-gradient(from var(--a), #ff2770 0%, #ff2770 5%, transparent 5%, transparent 40%, #ff3770 50%);
+    filter: drop-shadow( 0 15px 50px #000);
+    animation: rotating 4s linear infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    border-radius: 20px;
+    
+    
+}
+
+.box:hover{
+    width: 450px;
+    height: 500px;
+    
+}
+
+@keyframes rotating
+{
+    0%
+    {
+        --a: 0deg;
+    }
+    100%
+    {
+        --a: 360deg;
+
+    }
+
+}
+
+.box::before{
+    content: '';
+    position: absolute;
+    width:100%;
+    height:100%;
+    background: repeating-conic-gradient(from var(--a), #45f3ff 0%, #45f3ff 5%, transparent 5%, transparent 40%, #45f3ff 50%);
+    filter: drop-shadow( 0 15px 50px #000);
+    border-radius: 20px;
+    animation: rotating 4s linear infinite;
+    animation-delay: -1s;
+
+}
+
+.box::after{
+    content: '';
+    position: absolute;
+    inset: 4px;
+    background: #2d2d39;
+    border-radius: 15px;
+    border: 8px solid #25252b;
+}
+
+.login
+{
+    position: absolute;
+    inset: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius:10px;
+    background: rgba(0,0,0,0.2);
+    box-shadow: inset 0 10px 15px rgba(0,0,0,0.5);
+    overflow: hidden;
+    z-index:1000;
+    border-botton: 2px solid rgba(255,255,255,0.5);
+    transition: 0.5s;
+    
+    
+}
+
+.box::hover .login{
+    inset: 40px;
+    
+}
+
+.loginBox{
+    transform: translateY(60px);
+    transition: 0.5s;
+    
+}
+
+.loginBox:hover{
+    transform: translateY(-65px);
+    transition: 0.5s;
+}
+
+.loginBox:hover::after{
+    transform: translateY(130px);
+    transition: 0.5s;
+}
+
+.loginText
+{
+    color: #ffffff;
+    font-family: Roboto;
+    font-size: 30;
+    font-weight: lighter;
+    padding-top: 30px;
+    
+    /* transform: translateY(50); */
+    
+}
+
+.inputFields 
+{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    /* width: 70%; */
+    transition: 0.5s;
+    padding-top: 10px;
+    
+   
+}
+
+.loginText h1{
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+}
+
+.loginText h1 i{
+    color: #ff2770;
+    text-shadow: 0 0 5px #ff2770,
+    0 0 25px #ff2770;
+    padding-right: 10px;
+}
+
+
+
+.inputFields input[type="text"]
+{
+    width: 60%;
+    padding: 10px 20px;
+    position: relative;
+    top: 20px;
+    outline: none;
+    border: none;
+    font-size: 1em;
+    color: #fff;
+    background: rgba(0,0,0,0.1);
+    border: 0px solid #ff2770;
+    border-radius: 8px;
+    /* box-shadow:  0 1px 10px #ff2770; 464343 */
+    
+}
+
+.inputFields input[type="password"]
+{
+    width: 60%;
+    padding: 10px 20px;
+    position: relative;
+    top: 20px;
+    outline: none;
+    border: none;
+    font-size: 1em;
+    color: #fff;
+    background: rgba(0,0,0,0.1);
+    border: 0px solid #ff2770;
+    border-radius: 8px;
+    /* box-shadow:  0 1px 10px #ff2770; 464343 */
+    
+}
+
+
+
+
+.inputFields input::placeholder
+{
+    letter-spacing: 0.5em;
+}
+
+.submit
+{
+    background: #45f3ff;
+    border: 2px solid #45ffff;
+    font-weight: 500;
+    color: #111;
+    bottom: 0px;
+    position: relative;
+    top: -20px;
+    width: 30%;
+    height: 3em;
+    text-align: center;
+    border-radius: 8px;
+    align-items: center;
+}
+.submit:hover
+{
+    box-shadow:  0 1px 15px #45f3ff,
+    0 0 60px #45f3ff;
+    letter-spacing: 0.1em;
+    transition: 0.5s; 
+    cursor: pointer;
+}
+
+.submit:active
+{
+    box-shadow:  0 1px 15px #45a0ff,
+    0 0 60px #45a0ff;
+    letter-spacing: 0.1em;
+    transition: 0.1s; 
+    cursor: pointer;
+    color: #fff;
+}
+
+
+.hyperButtons
+{
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    position: inherit;
+    top: -25px;
+    
+}
+
+.hyperButtons a
+{
+    color: #464888;
+    text-decoration: none;
+
+    
+}
+
+.hyperButtons a:nth-child(2)
+{
+    color:#ff2770;
+    font-weight: 600;
+}
+
+.authTextPreAuth
+{
+    visibility: hidden;
+}
+
+.authTextPostAuth
+{
+    visibility: true;
+    transform: translateY(-40px);
+    color: #ffffff;
+    font-family: Roboto;
+    font-size: 30;
+    font-weight: lighter;
+    padding-top: 30px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+}
+
+.authTextPostAuth h1 {
+    color: #64ff27;
+    text-shadow: 0 0 5px #64ff27,
+    0 0 25px #64ff27;
+    padding-right: 10px;
+}
+
+.authTextPostAuth h1 i{
+    color: #64ff27;
+    text-shadow: 0 0 5px #64ff27,
+    0 0 25px #64ff27;
+    padding-right: 10px;
+}
+
+.postAuth
+{
+    visibility: hidden;
+}
+
+.postAuthloginBox{
+    transform: translateY(208px);
+    transition: 0.5s;
+    
+}
+
+.postAuthloginBox:hover{
+    transform: translateY(208px);
+    transition: 0.5s;
+}
+
+.postAuthloginBox:hover::after{
+    transform: translateY(208px);
+    transition: 0.5s;
+}
+
+
+.postAuthBox
+{
+    position: relative;
+    width: 600px;
+    height:200px;
+    background: repeating-conic-gradient(from var(--a), #64ff27 0%, #64ff27 5%, transparent 5%, transparent 40%, #64ff27 50%);
+    filter: drop-shadow( 0 15px 50px #000);
+    animation: rotating 4s linear infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    border-radius: 20px;
+    
+    
+}
+
+.postAuthBox::before{
+    content: '';
+    position: absolute;
+    width:100%;
+    height:100%;
+    background: repeating-conic-gradient(from var(--a), #45f3ff 0%, #45f3ff 5%, transparent 5%, transparent 40%, #45f3ff 50%);
+    filter: drop-shadow( 0 15px 50px #000);
+    border-radius: 20px;
+    animation: rotating 4s linear infinite;
+    animation-delay: -1s;
+
+}
+
+.postAuthBox::after{
+    content: '';
+    position: absolute;
+    inset: 4px;
+    background: #2d2d39;
+    border-radius: 15px;
+    border: 8px solid #25252b;
+}
+
+
+/*********************Invalids*******************************/
+.inputInvalid
+{
+    width: 100%;
+    padding: 10px 20px;
+    position: relative;
+    top: 20px;
+    outline: none;
+    border: none;
+    font-size: 1em;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    border: 0px solid #ff2770;
+    border-radius: 8px;
+    box-shadow:  0 1px 10px #ff2770,
+    0 0 60px #ff2770;
+    
+}
+
+.buttonInvalid
+{
+    background: #ff2770;
+    border: 2px solid #ff2770;
+    font-weight: 500;
+    color: #111;
+    bottom: 0px;
+    position: relative;
+    top: -20px;
+    width: 30%;
+    height: 3em;
+    text-align: center;
+    align-items: center;
+    box-shadow:  0 1px 15px #ff2770,
+    0 0 60px #ff2770;
+    letter-spacing: 0.1em;
+    transition: 0.5s;  
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.buttonInvalid:hover
+{
+    box-shadow:  0 1px 15px #ff2770,
+    0 0 60px #ff2770;
+    letter-spacing: 0.1em;
+    transition: 0.5s; 
+    cursor: pointer;
+}
+
+.buttonInvalid:active
+{
+    box-shadow:  0 1px 15px #ff2770,
+    0 0 60px #ff2770;
+    letter-spacing: 0.1em;
+    transition: 0.1s; 
+    cursor: pointer;
+    color: #fff;
+}
