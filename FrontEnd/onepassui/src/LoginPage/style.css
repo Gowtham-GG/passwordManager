@@ -12,7 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 100vh;  
     background-color: #25252b;
 
 }
@@ -39,6 +39,8 @@
     
     
 }
+
+
 
 .box:hover{
     width: 450px;
@@ -82,6 +84,47 @@
     border: 8px solid #25252b;
 }
 
+
+
+.box-body
+{
+    position: relative;
+    width: 100%;
+    height:100vh;
+    background: repeating-conic-gradient(from var(--a), #ff2770 0%, #ff2770 5%, transparent 5%, transparent 40%, #ff3770 50%);
+    filter: drop-shadow( 0 15px 50px #000);
+    animation: rotating 10s linear infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    border-radius: 20px;
+    
+    
+}
+
+.box-body::before{
+    content: '';
+    position: absolute;
+    width:100%;
+    height:100%;
+    background: repeating-conic-gradient(from var(--a), #45f3ff 0%, #45f3ff 5%, transparent 5%, transparent 40%, #45f3ff 50%);
+    filter: drop-shadow( 0 15px 50px #000);
+    border-radius: 20px;
+    animation: rotating 10s linear infinite;
+    animation-delay: -1s;
+
+}
+
+.box-body::after{
+    content: '';
+    position: absolute;
+    inset: 4px;
+    background: #2d2d39;
+    border-radius: 15px;
+    border: 8px solid #25252b;
+}
+
 .login
 {
     position: absolute;
@@ -107,7 +150,7 @@
 }
 
 .loginBox{
-    transform: translateY(60px);
+    transform: translateY(80px);
     transition: 0.5s;
     
 }
@@ -359,6 +402,166 @@
     border: 8px solid #25252b;
 }
 
+.outer {
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  position: relative;
+  background-color: #464888;
+  margin: 10px;
+  cursor:pointer;
+  
+    
+}
+.outer-animation
+{   width: 398px;
+    height: 398px;
+    top: -2%;
+    right   : 2.3%;
+    border-radius: 50%;
+    position: relative;
+  background-color: #464888;
+  margin: 10px;
+  cursor:pointer;
+    background: repeating-conic-gradient(from var(--a), #bcbdd6 0%, #bcbdd6 5%, transparent 5%, transparent 40%, #bcbdd6 50%);
+  animation: rotating 4s linear infinite;
+    animation-delay: -1s;
+}
+
+.inner {
+  position: absolute;
+
+  width: 98%;
+  height: 98%;
+  border-radius: 50%;
+  background-color: #25252b;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.5s ease-out;
+}
+
+.orange{
+    top: 4%;
+    left: 4.5%;
+    position: absolute;
+}
+
+.inner-orange-opaque {
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    position: relative;
+    background-color: #ee7a2c;
+    margin: 10px;
+    cursor:pointer;
+  }
+
+.inner-orange-transparent{
+    position: absolute;
+
+  width: 98%;
+  height: 98%;
+  border-radius: 50%;
+  background-color: #25252b;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.5s ease-out;
+}
+
+
+.red{
+    top: 14%;
+    left: 15%;
+    position: absolute;
+}
+
+.inner-red-opaque {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    position: relative;
+    background-color: #ff2770;
+    margin: 10px;
+    cursor:pointer;
+  }
+
+.inner-red-transparent{
+    position: absolute;
+
+  width: 98%;
+  height: 98%;
+  border-radius: 50%;
+  background-color: #25252b;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.5s ease-out;
+}
+
+.blue{
+    top: 26%;
+    left: 27%;
+    position: absolute;
+}
+
+.blue-animation
+{   width: 158px;
+    height: 158px;
+    top: 1%;
+    right   : 5.6%;
+    border-radius: 50%;
+    position: relative;
+  background-color: #464888;
+  margin: 10px;
+  cursor:pointer;
+    background: repeating-conic-gradient(from var(--a), #bcbdd6 0%, #bcbdd6 5%, transparent 5%, transparent 40%, #bcbdd6 50%);
+  animation: rotating 4s linear infinite;
+    animation-delay: -1s;
+}
+
+.inner-blue-opaque {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    position: relative;
+    background-color: #464888;
+    margin: 10px;
+    cursor:pointer;
+  }
+
+.inner-blue-transparent{
+    position: absolute;
+
+  width: 98%;
+  height: 98%;
+  border-radius: 50%;
+  background-color: #25252b;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.5s ease-out;
+}
+
+.ring-button-outer {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: relative;
+    background-color: #c6c8f7;
+    margin: 10px;
+    cursor:pointer;
+    
+      
+  }
+  #button-1{
+    top: -35%;
+  }
+  #button-3{
+    top: -75%;
+    left: 62%;
+  }
 
 /*********************Invalids*******************************/
 .inputInvalid
