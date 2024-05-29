@@ -150,13 +150,13 @@
 }
 
 .loginBox{
-    transform: translateY(80px);
+    transform: translateY(60px);
     transition: 0.5s;
     
 }
 
 .loginBox:hover{
-    transform: translateY(-65px);
+    transform: translateY(-55px);
     transition: 0.5s;
 }
 

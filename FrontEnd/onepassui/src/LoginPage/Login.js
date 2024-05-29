@@ -10,6 +10,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 import {Routes, Route, useNavigate} from 'react-router-dom';
+import axios from "axios";
 
 function Login()
 {
@@ -38,7 +39,10 @@ function Login()
 
     
 
-    const submit = () => {
+    const submit = (e) => {
+
+        e.preventDefault();
+
         var isValidUN = true;
         var isValidPW = true;
         var userElement = document.getElementById("username");
@@ -124,6 +128,16 @@ function Login()
         hyperElement2.className,loginBoxElement.className,boxElement.className,
         
         pwElement.className,submitElement.className, "Auth : ", authTitleElement.className);
+        console.log("User Name : " + userName + ", Cred : " + password);
+        // Use the variable name while sending object to backend, make sure variable name is db datamember name
+        axios.post("http://localhost:8080/api/login", {user_name: userName, user_cred: password}).then((resp) =>
+        
+            {
+                console.log("UserName : ", resp.data);
+            }
+        
+        );
+
         setTimeout(function(){navigate('/dash');},2000);
 
         }
