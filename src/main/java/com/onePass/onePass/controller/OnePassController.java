@@ -20,7 +20,8 @@ import java.util.Optional;
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
 @RequestMapping("/api")
-public class OnePassController {
+public class OnePassController
+{
 
 
 
@@ -66,7 +67,7 @@ public class OnePassController {
 
         System.out.println("Current User : " + currentUser.getUserName());
 
-        return ResponseEntity.ok(currentUser    );
+        return ResponseEntity.ok(currentUser);
 
     }
 
@@ -81,6 +82,8 @@ public class OnePassController {
     {
         return userServiceImpl.searchByUserName(userName);
     }
+
+
 
 
 }

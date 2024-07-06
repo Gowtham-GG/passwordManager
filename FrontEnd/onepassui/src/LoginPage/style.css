@@ -103,6 +103,56 @@
     
 }
 
+.nav-body::before{ /*Can be used as loading buffer*/
+    content: '';
+    position: absolute;
+    width:100%;
+    height:100%;
+    background: repeating-conic-gradient(from var(--a), #45f3ff 0%, #45f3ff 5%, transparent 5%, transparent 40%, #45f3ff 50%);
+    /* filter: drop-shadow( 0 15px 50px #000); */
+    border-radius: 20px;
+    animation: rotating 8s linear infinite;
+    animation-delay: -2s;
+    z-index: -1;
+
+}
+
+.nav-body::after{
+    content: '';
+    position: absolute;
+    inset: 4px;
+    background: #2d2d39;
+    border-radius: 15px;
+    border: 8px solid #25252b;
+    z-index: -1;
+}
+
+
+.nav-body
+{
+    position: absolute;
+    width: 100%;
+    height:7.5vh; 
+    top:-2px;
+    background: repeating-conic-gradient(from var(--a), #ff2770 0%, #ff2770 5%, transparent 5%, transparent 40%, #ff3770 50%);
+    filter: drop-shadow(0 15px 50px #25252b);
+    animation: rotating 8s linear infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation-delay: -2s;
+    transition: 0.5s;
+    /* border-radius: 20px; */
+    background-color: #25252b;
+    
+    
+}
+
+.nav-body-main
+{
+    background-color: #25252b;
+}
+
 .box-body::before{
     content: '';
     position: absolute;
@@ -172,7 +222,7 @@
     font-size: 30;
     font-weight: lighter;
     padding-top: 30px;
-    
+    z-index: 1;
     /* transform: translateY(50); */
     
 }
@@ -189,8 +239,10 @@
     transition: 0.5s;
     padding-top: 10px;
     
-   
+   z-index: 1;
 }
+
+
 
 .loginText h1{
     text-transform: uppercase;
@@ -245,6 +297,66 @@
 
 
 .inputFields input::placeholder
+{
+    letter-spacing: 0.5em;
+}
+
+/* InputFields Static */
+.inputFields-static
+{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    /* width: 70%; */
+    transition: 0.5s;
+    padding-top: 10px;
+    width: 50%;
+   z-index: 1;
+}
+
+
+
+.inputFields-static input[type="text"]
+{
+    width: 60%;
+    padding: 10px 20px;
+    position: relative;
+    top: 20px;
+    outline: none;
+    border: none;
+    font-size: 1em;
+    color: #fff;
+    background: rgba(0,0,0,0.1);
+    border: 0px solid #ff2770;
+    border-radius: 8px;
+    /* box-shadow:  0 1px 10px #ff2770; 464343 */
+    
+}
+
+.inputFields-static input[type="password"]
+{
+    width: 60%;
+    padding: 10px 20px;
+    position: relative;
+    top: 20px;
+    outline: none;
+    border: none;
+    font-size: 1em;
+    color: #fff;
+    background: rgba(0,0,0,0.1);
+    border: 0px solid #ff2770;
+    border-radius: 8px;
+    /* box-shadow:  0 1px 10px #ff2770; 464343 */
+    
+}
+
+
+
+
+.inputFields-static input::placeholder
 {
     letter-spacing: 0.5em;
 }
@@ -550,18 +662,282 @@
     border-radius: 50%;
     position: relative;
     background-color: #c6c8f7;
+    
     margin: 10px;
     cursor:pointer;
     
       
   }
+
   #button-1{
     top: -35%;
+    z-index: 1;
   }
   #button-3{
     top: -75%;
     left: 62%;
+    z-index: 1;
   }
+  #button-2{
+    top: -105%;
+    left: 28%;
+    z-index: 1;
+  }
+  #button-4{
+    top: -55%;
+    left: 70%;
+    z-index: 1;
+  }
+
+
+
+
+
+
+    .line-3 {
+        width: 400px;
+        height: 1px;
+        background: white;
+        position: absolute;
+        margin: 10px;
+        top: 53px;
+        left: 113%;
+        display: none;
+    }
+
+  
+
+  .diagonal-line-3{
+    width: 206px;
+    height: 1px;
+    transform: rotate(-30deg);
+    background: white;
+    position: absolute;
+    margin: 10px;
+    top: 105px;
+    left: 65%;
+    display: none;
+  }
+
+  .line-2 {
+    width: 400px;
+    height: 1px;
+    background: white;
+    position: absolute;
+    margin: 10px;
+    top: 13px;
+    left: -110%;
+    display: none;
+}
+
+
+
+.diagonal-line-2{
+width: 180px;
+height: 1px;
+transform: rotate(-160deg);
+background: white;
+position: absolute;
+margin: 10px;
+top: 43px;
+left: -12%;
+display: none;
+}
+
+.line-1 {
+    width: 400px;
+    height: 1px;
+    background: white;
+    position: absolute;
+    margin: 10px;
+    top: 403px;
+    left: -120%;
+    display: none;
+}
+
+
+
+.diagonal-line-1{
+width: 160px;
+height: 1px;
+transform: rotate(130deg);
+background: white;
+position: absolute;
+margin: 10px;
+top: 342px;
+left: -27%;
+display: none;
+}
+
+.line-4 {
+    width: 400px;
+    height: 1px;
+    background: white;
+    position: absolute;
+    margin: 10px;
+    top: 223px;
+    left: 115%;
+    display  : none;
+}
+
+
+
+.diagonal-line-4{
+width: 180px;
+height: 1px;
+transform: rotate(150deg);
+background: white;
+position: absolute;
+margin: 10px;
+top: 268px;
+left: 73%;
+display: none;
+}
+
+  .info-text{
+    display: none;
+  }
+
+  #button-3:hover ~ .line-3 {    
+    display: block;
+    transition: all 0.5s ease-out;
+    transition: 0.5s;
+  }
+
+  #button-3:hover ~ .diagonal-line-3 {    
+    display: block;
+    transition: all 0.5s ease-out;
+    transition: 0.5s;
+  }
+
+  #button-3:hover ~ #create-vault{
+    /* z-index: 10; */
+    display: block;
+    position: absolute;
+    color: white;
+    top: 35px;
+    left: 110%;
+    width: 206px;
+  }
+
+  #button-2:hover ~ .line-2 {    
+    display: block;
+    transition: all 0.5s ease-out;
+    transition: 0.5s;
+  }
+
+  #button-2:hover ~ .diagonal-line-2 {    
+    display: block;
+    transition: all 0.5s ease-out;
+    transition: 0.5s;
+  }
+
+  #button-2:hover ~ #manage-vault{
+    /* z-index: 10; */
+    display: block;
+    position: absolute;
+    color: white;
+    top: -5px;
+    left: -55%;
+    width: 206px;
+  }
+
+  #button-1:hover ~ .line-1 {    
+    display: block;
+    transition: all 0.5s ease-out;
+    transition: 0.5s;
+  }
+
+  #button-1:hover ~ .diagonal-line-1 {    
+    display: block;
+    transition: all 0.5s ease-out;
+    transition: 0.5s;
+  }
+
+  #button-1:hover ~ #save-password{
+    /* z-index: 10; */
+    display: block;
+    position: absolute;
+    color: white;
+    top: 385px;
+    left: -65%;
+    width: 206px;
+  }
+
+  #button-4:hover ~ .line-4 {    
+    display: block;
+    transition: all 0.5s ease-out;
+    transition: 0.5s;
+  }
+
+  #button-4:hover ~ .diagonal-line-4 {    
+    display: block;
+    transition: all 0.5s ease-out;
+    transition: 0.5s;
+  }
+
+  #button-4:hover ~ #vault-lookup{
+    /* z-index: 10; */
+    display: block;
+    position: absolute;
+    color: white;
+    top: 196px;
+    left: 112%;
+    width: 206px;
+  }
+
+
+  .box-static
+{
+    
+  position: relative;
+  width: 1600px;
+  height:800px;
+  background: repeating-conic-gradient(from var(--a), #ff2770 0%, #ff2770 5%, transparent 5%, transparent 40%, #ff3770 50%);
+  filter: drop-shadow( 0 15px 50px #000);
+  animation: rotating 8s linear infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+  border-radius: 20px;
+    z-index: 0;
+    
+}
+
+.box-static::before{
+  content: '';
+  position: absolute;
+  width:100%;
+  height:100%;
+  background:  #45f3ff ;
+  filter: drop-shadow( 0 15px 50px #000);
+  border-radius: 20px;
+  animation: rotating 8s linear infinite;
+  animation-delay: -1s;
+
+}
+
+.box-static::after{
+  content: '';
+  position: absolute;
+  inset: 4px;
+  background: #2d2d39;
+  border-radius: 15px;
+  border: 8px solid #25252b;
+}
+
+#vault-icon{
+  /* z-index: 1; */
+  color: #ff2770;
+  /* text-shadow: 0px 0px 20px #ff2770,
+  2 2 25px #ff2770; */
+  padding-right: 30px;
+  font-size: 1.5em;
+  padding-bottom: 10px;
+  width: 120px;
+  
+}
 
 /*********************Invalids*******************************/
 .inputInvalid

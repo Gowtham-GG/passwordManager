@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import './App.css';
 import Login from './LoginPage/Login';
 import LandingPage from './LandingPage/LandingPage';
+import CreateVaultPage from './CreateVaultPage/CreateVaultPage';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
       <Routes>
         <Route path="/login" element = {<Login/>}/>
         <Route path="/dash" element = {<LandingPage/>}/>
+        <Route path='/create-vault' element = {<CreateVaultPage/>}/>
       </Routes>
       </BrowserRouter> 
     </div>
