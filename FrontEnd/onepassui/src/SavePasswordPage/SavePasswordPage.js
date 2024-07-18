@@ -3,8 +3,9 @@ import Navbar from "../General/Navbar";
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import axios from "axios";
 import {Routes, Route, useNavigate} from 'react-router-dom';
+import { Dropdown } from "bootstrap";
 
-function CreateVaultPage(){
+function SavePasswordPage(){
 
     const [vaultName, setVaultName] = React.useState("");
     
@@ -162,7 +163,7 @@ function CreateVaultPage(){
         
         // );
 
-        // setTimeout(function(){navigate('/dash');},2000);
+        setTimeout(function(){navigate('/dash');},2000);
 
         }
 
@@ -184,11 +185,20 @@ function CreateVaultPage(){
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
   <div class="pageText authTextPreAuth" id="authTextPreAuth"> <h1><VpnKeyIcon id="vault-icon"/>Vault Created</h1></div>
-  <div class="pageText" id = "loginTitle"> <h1><VpnKeyIcon className="authTextPreAuthIconColor" id="vault-icon"/>Create Vault</h1></div>
+  <div class="pageText" id = "loginTitle"> <h1><VpnKeyIcon className="authTextPreAuthIconColor" id="vault-icon"/>Save Password</h1></div>
   <div class="inputFields-static">
-                                    <input className = "input" id="vault-name" type="text" placeholder="Enter Vault Name" onChange={onChangeHandler}></input>
+                                    <input className = "input" id="vault-name" type="text" placeholder="Enter Nickname" onChange={onChangeHandler}></input>
+                                    <input className = "input" id="vault-name" type="text" placeholder="Enter Site Address" onChange={onChangeHandler}></input>
                                     <input className = "input" id="password" type="password" placeholder="Enter Vault Credentials" onChange={onChangeHandlerPW}></input>
                                     <input className = "input" id="re-type-password" type="password" placeholder="Re-Enter Vault Credentials" onChange={onChangeHandlerRePW}></input>
+                                    <br/>
+                                    <select className = "inputSelector" id = "dropdown" placeholder="Select a Vault">
+                                          
+                                            <option className = "inputSelector" value = "default">Select a Vault</option>
+                                            <option className = "inputSelector" value = "value from db 1">Vault1</option>
+                                            <option className = "inputSelector" value = "value from db 2">Vault2</option>
+                                        
+                                    </select>
                                     <br/>
                                     <br/>
                                     <input class = "submit" type="submit" placeholder="Login" id = "submit" onClick={submit}></input>
@@ -196,7 +206,7 @@ function CreateVaultPage(){
                                 </div>
 
 
-</div>
+   </div>
 
 
 
@@ -204,4 +214,4 @@ function CreateVaultPage(){
 
     )
 }
-export default CreateVaultPage;
+export default SavePasswordPage;

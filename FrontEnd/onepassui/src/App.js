@@ -4,7 +4,7 @@ import './App.css';
 import Login from './LoginPage/Login';
 import LandingPage from './LandingPage/LandingPage';
 import CreateVaultPage from './CreateVaultPage/CreateVaultPage';
-
+import SavePasswordPage from './SavePasswordPage/SavePasswordPage';
 
 function App() {
   return (
@@ -40,6 +40,7 @@ function App() {
         <Route path="/login" element = {<Login/>}/>
         <Route path="/dash" element = {<LandingPage/>}/>
         <Route path='/create-vault' element = {<CreateVaultPage/>}/>
+        <Route path='/save-password' element = {<SavePasswordPage/>}/>
       </Routes>
       </BrowserRouter> 
     </div>
