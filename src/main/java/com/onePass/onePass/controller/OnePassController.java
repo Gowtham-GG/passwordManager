@@ -56,6 +56,7 @@ public class OnePassController
     public ResponseEntity<Object> getData(@RequestBody LoginResponse loginCred)
     {
 
+        //Decorator Pattern used. Also prevents SQL Injection.
         LoginResponse data = loginCall(loginCred.getUser_name());
 
 

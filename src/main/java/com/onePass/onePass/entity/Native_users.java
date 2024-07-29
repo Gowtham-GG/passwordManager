@@ -40,6 +40,10 @@ public class Native_users {
         this.userEmail = userEmail;
     }
 
+    public Native_users() {
+
+    }
+
     public Long getUserId() {
         return userId;
     }

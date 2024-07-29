@@ -13,6 +13,13 @@ function LandingPage() {
     
 }
 
+const moveToSavePasswordPage = (e) => {
+
+  e.preventDefault();
+  setTimeout(function(){navigate('/save-password');},2000);
+  
+}
+
 
   return (
 <div>
@@ -42,7 +49,7 @@ function LandingPage() {
 
 
         {/* Button Solid Circles */}
-        <div class="ring-button-outer" id="button-1"><div class="ring-button-inner"></div></div>
+        <div class="ring-button-outer" id="button-1" onClick={moveToSavePasswordPage}><div class="ring-button-inner"></div></div>
 
         <div class="ring-button-outer" id="button-3" onClick={moveToVaultPage}><div class="ring-button-inner" onClick={moveToVaultPage}x1></div></div>
 
@@ -60,9 +67,9 @@ function LandingPage() {
         <div class="diagonal-line-2"></div>
         <div class="info-text" id="manage-vault">Manage Vault</div>
 
-        <div class="line-1" id="line-1"></div>
-        <div class="diagonal-line-1"></div>
-        <div class="info-text" id="save-password">Save a Password</div>
+        <div class="line-1" id="line-1" onClick={moveToSavePasswordPage}></div>
+        <div class="diagonal-line-1" onClick={moveToSavePasswordPage}></div>
+        <div class="info-text" id="save-password" onClick={moveToSavePasswordPage}>Save a Password</div>
 
         <div class="line-4" id="line-4"></div>
         <div class="diagonal-line-4"></div>

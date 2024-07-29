@@ -7,13 +7,20 @@ import { Dropdown } from "bootstrap";
 
 function SavePasswordPage(){
 
-    const [vaultName, setVaultName] = React.useState("");
+    const [passwordName, setPasswordName] = React.useState("");
     
 
     const onChangeHandler = event => {
-        setVaultName(event.target.value);        
+        setPasswordName(event.target.value);        
     }
     
+    const [siteName, setSiteName] = React.useState("");
+    
+
+    const onChangeHandlerSite = event => {
+        setSiteName(event.target.value);        
+    }
+
     const [password, setPassword] = React.useState("");
 
     const onChangeHandlerPW = event => {
@@ -27,18 +34,31 @@ function SavePasswordPage(){
         setRePassword(event.target.value);        
     }
     
+
+    const [vaultName, setVaultName] = React.useState("");
+    
+
+    const onChangeHandlerVault = event => {
+        setVaultName(event.target.value);        
+    }
+
+
     const navigate = useNavigate();
 
     const submit = (e) => {
         e.preventDefault();
 
         var isValidUN = true;
+        var isValidSite = true;
         var isValidPW = true;
         var isValidRePW = true;
         var pwMatch = true;
-        var vaultElement = document.getElementById("vault-name");
+        var isVaultDefault = true;
+        var passwordElement = document.getElementById("password-name");
+        var siteElement = document.getElementById("site-name");
         var pwElement = document.getElementById("password");
         var rePwElement = document.getElementById("re-type-password");
+        var vaultElement = document.getElementById("vault-dropdown");
         var submitElement = document.getElementById("submit");
         var titleElement = document.getElementById("loginTitle");
         var authTitleElement = document.getElementById("authTextPreAuth");
@@ -46,12 +66,12 @@ function SavePasswordPage(){
         var boxElement = document.getElementById("box-static");
         // var authTitleElement = document.getElementById("authTextPreAuth");
 
-        if (vaultName.length < 3) {
+        if (passwordName.length < 3) {
 
             isValidUN = false;
             if (!isValidUN) {
                 // console.log("Error");
-                vaultElement.classList.add("inputInvalid");
+                passwordElement.classList.add("inputInvalid");
                 submitElement.classList.add("buttonInvalid");
                 // submitElement.classList.remove("submit");
                 // console.log("before : ", submitElement.className);
@@ -66,12 +86,40 @@ function SavePasswordPage(){
             isValidUN = true;
             if (isValidUN) {
 
-                vaultElement.classList.remove("inputInvalid");
-                vaultElement.classList.add("input");
+                passwordElement.classList.remove("inputInvalid");
+                passwordElement.classList.add("input");
                 // console.log("Hi ",userElement.className);
 
             } 
         }
+
+        if (siteName.length < 3) {
+
+            isValidSite = false;
+            if (!isValidSite) {
+                // console.log("Error");
+                siteElement.classList.add("inputInvalid");
+                submitElement.classList.add("buttonInvalid");
+                // submitElement.classList.remove("submit");
+                // console.log("before : ", submitElement.className);
+                setTimeout(function() {submitElement.classList.remove("buttonInvalid")}, 1000);
+                // console.log(userElement.className);
+                // console.log("after : ", submitElement.className);
+
+            }
+        }
+        else { 
+
+            isValidSite = true;
+            if (isValidSite) {
+
+                siteElement.classList.remove("inputInvalid");
+                siteElement.classList.add("input");
+                // console.log("Hi ",userElement.className);
+
+            } 
+        }   
+
         // password.length < 3
         if (password.length < 3) {
                 // console.log(password.length)
@@ -117,6 +165,35 @@ function SavePasswordPage(){
 
         }  
     }
+    console.log(vaultName);
+    if (vaultName==="Select A Vault") {
+
+        isVaultDefault = false;
+        if (!isVaultDefault) {
+            // console.log("Error");
+            vaultElement.classList.add("inputInvalid");
+            submitElement.classList.add("buttonInvalid");
+            // submitElement.classList.remove("submit");
+            // console.log("before : ", submitElement.className);
+            setTimeout(function() {submitElement.classList.remove("buttonInvalid")}, 1000);
+            // console.log(userElement.className);
+            // console.log("after : ", submitElement.className);
+
+        }
+    }
+    else { 
+
+        isVaultDefault = true;
+        if (isVaultDefault) {
+
+            vaultElement.classList.remove("inputInvalid");
+            vaultElement.classList.add("input");
+            // console.log("Hi ",userElement.className);
+
+        } 
+    }
+
+
     if(password === rePassword)
         {
             pwMatch = true;
@@ -130,7 +207,7 @@ function SavePasswordPage(){
         // isValidPW == true & isValidUN == true
         if(isValidPW == true & isValidUN == true & isValidRePW == true & pwMatch === true)
         {
-            vaultElement.classList.add("postAuth");
+            passwordElement.classList.add("postAuth");
             pwElement.classList.add("postAuth");
             rePwElement.classList.add("postAuth");
             submitElement.classList.add("postAuth");
@@ -187,16 +264,16 @@ function SavePasswordPage(){
   <div class="pageText authTextPreAuth" id="authTextPreAuth"> <h1><VpnKeyIcon id="vault-icon"/>Vault Created</h1></div>
   <div class="pageText" id = "loginTitle"> <h1><VpnKeyIcon className="authTextPreAuthIconColor" id="vault-icon"/>Save Password</h1></div>
   <div class="inputFields-static">
-                                    <input className = "input" id="vault-name" type="text" placeholder="Enter Nickname" onChange={onChangeHandler}></input>
-                                    <input className = "input" id="vault-name" type="text" placeholder="Enter Site Address" onChange={onChangeHandler}></input>
+                                    <input className = "input" id="password-name" type="text" placeholder="Enter Nickname" onChange={onChangeHandler}></input>
+                                    <input className = "input" id="site-name" type="text" placeholder="Enter Site Address" onChange={onChangeHandlerSite}></input>
                                     <input className = "input" id="password" type="password" placeholder="Enter Vault Credentials" onChange={onChangeHandlerPW}></input>
                                     <input className = "input" id="re-type-password" type="password" placeholder="Re-Enter Vault Credentials" onChange={onChangeHandlerRePW}></input>
                                     <br/>
-                                    <select className = "inputSelector" id = "dropdown" placeholder="Select a Vault">
+                                    <select className = "inputSelector" id = "vault-dropdown" placeholder="Select a Vault" value={vaultName} onChange={onChangeHandlerVault}>
                                           
-                                            <option className = "inputSelector" value = "default">Select a Vault</option>
-                                            <option className = "inputSelector" value = "value from db 1">Vault1</option>
-                                            <option className = "inputSelector" value = "value from db 2">Vault2</option>
+                                            <option className = "inputSelector" value = "default" onChange={onChangeHandlerVault}>Select a Vault</option>
+                                            <option className = "inputSelector" value = "value from db 1" onChange={onChangeHandlerVault}>Vault1</option>
+                                            <option className = "inputSelector" value = "value from db 2" onChange={onChangeHandlerVault}>Vault2</option>
                                         
                                     </select>
                                     <br/>
