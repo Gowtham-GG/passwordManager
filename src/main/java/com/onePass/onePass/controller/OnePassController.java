@@ -1,20 +1,16 @@
 package com.onePass.onePass.controller;
 
 
+import com.onePass.onePass.Request.LoginRequest;
 import com.onePass.onePass.Response.LoginResponse;
 import com.onePass.onePass.entity.Native_users;
-import com.onePass.onePass.repository.NativeUsersRepo;
 import com.onePass.onePass.service.impl.UserServiceImpl;
-import org.apache.catalina.filters.CorsFilter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @CrossOrigin(origins = {"http://localhost:3000"})
@@ -53,27 +49,32 @@ public class OnePassController
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Object> getData(@RequestBody LoginResponse loginCred)
+    public ResponseEntity<Object> getData(@RequestBody LoginRequest loginCred)
     {
 
         //Decorator Pattern used. Also prevents SQL Injection.
-        LoginResponse data = loginCall(loginCred.getUser_name());
+        LoginRequest fetchUser = loginCall(loginCred.getUser_name());
+        LoginResponse validateUser;
 
 
-        System.out.println(data.getUser_name());
+//        Native_users fetchUser = searchByUserName(data.getUser_name());
+        System.out.println(loginCred.getUser_cred()+" : "+fetchUser.getUser_cred());
+        if(loginCred.getUser_cred().equals(fetchUser.getUser_cred())){
+            validateUser = new LoginResponse(fetchUser.getUserID(), fetchUser.getUser_name(),true);
+            return ResponseEntity.ok(validateUser);
+        }
+        else {
+            ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid Password");
+        }
 
-        System.out.println("Sent user : " + loginCred.getUser_name());
 
-        Native_users currentUser = searchByUserName(loginCred.getUser_name());
 
-        System.out.println("Current User : " + currentUser.getUserName());
-
-        return ResponseEntity.ok(currentUser);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid Data");
 
     }
 
     @GetMapping("/login/{userName}")
-    public LoginResponse loginCall(@PathVariable("userName") String userName)
+    public LoginRequest loginCall(@PathVariable("userName") String userName)
     {
         return userServiceImpl.getLoginCred(userName);
     }

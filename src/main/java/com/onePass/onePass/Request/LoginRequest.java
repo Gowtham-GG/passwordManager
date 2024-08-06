@@ -1,34 +1,43 @@
-package com.onePass.onePass.Response;
+package com.onePass.onePass.Request;
 
 
-public class LoginResponse {
+public class LoginRequest {
+
+    private long userID;
 
     private String user_name;
 
     private String user_cred;
 
-    private boolean login_status;
+    public long getUserID() {
+        return userID;
+    }
 
-    public LoginResponse()
+    public void setUserID(long userID) {
+        this.userID = userID;
+    }
+
+
+
+
+    public LoginRequest()
     {
 
     }
 
-    public LoginResponse(String user_name, String user_cred) {
+    public LoginRequest(long userID, String user_name, String user_cred) {
+        this.userID = userID;
+        this.user_name = user_name;
+        this.user_cred = user_cred;
+    }
+
+    public LoginRequest(String user_name, String user_cred) {
         this.user_name = user_name;
         this.user_cred = user_cred;
     }
 
     public String getUser_name() {
         return user_name;
-    }
-
-    public boolean isLogin_status() {
-        return login_status;
-    }
-
-    public void setLogin_status(boolean login_status) {
-        this.login_status = login_status;
     }
 
     public void setUser_name(String user_name) {

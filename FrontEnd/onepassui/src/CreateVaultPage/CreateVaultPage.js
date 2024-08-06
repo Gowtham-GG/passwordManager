@@ -140,9 +140,11 @@ function CreateVaultPage(){
             authTitleElement.classList.remove("authTextPreAuth");
             authTitleElement.classList.remove("loginText");
             vaultIconElement.classList.remove("authTextPreAuthIconColor");
+            vaultIconElement.classList.remove("pageText-icon");
             vaultIconElement.classList.add("authTextPostAuthIconColor");
             boxElement.classList.add("postAuthBox-static");
             boxElement.classList.remove("box-static");
+            console.log(vaultIconElement.className);
             // vaultIconElement.classList.add("authTextPostAuth-static");
             // loginBoxElement.classList.add("postAuthloginBox");
             // boxElement.classList.add("postAuthBox");
@@ -183,8 +185,8 @@ function CreateVaultPage(){
   href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
-  <div class="pageText authTextPreAuth" id="authTextPreAuth"> <h1><VpnKeyIcon id="vault-icon"/>Vault Created</h1></div>
-  <div class="pageText" id = "loginTitle"> <h1><VpnKeyIcon className="authTextPreAuthIconColor" id="vault-icon"/>Create Vault</h1></div>
+  <div class="pageText authTextPreAuth" id="authTextPreAuth"> <h1><i class="fa-solid fa-vault"></i> Vault Created</h1></div>
+  <div class="pageText" id = "loginTitle"> <h1><i id = "vault-icon" class="fa-solid fa-vault authTextPreAuthIconColor pageText-icon"></i> Create Vault</h1></div>
   <div class="inputFields-static">
                                     <input className = "input" id="vault-name" type="text" placeholder="Enter Vault Name" onChange={onChangeHandler}></input>
                                     <input className = "input" id="password" type="password" placeholder="Enter Vault Credentials" onChange={onChangeHandlerPW}></input>

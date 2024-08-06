@@ -1,6 +1,6 @@
 package com.onePass.onePass.service.impl;
 
-import com.onePass.onePass.Response.LoginResponse;
+import com.onePass.onePass.Request.LoginRequest;
 import com.onePass.onePass.entity.Native_users;
 import com.onePass.onePass.repository.NativeUsersRepo;
 import com.onePass.onePass.service.UserService;
@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public LoginResponse getLoginCred(String userName)
+    public LoginRequest getLoginCred(String userName)
     {
         return nativeUsersRepo.loginCred(userName);
     }

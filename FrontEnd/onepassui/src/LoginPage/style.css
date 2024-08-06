@@ -249,7 +249,7 @@
   letter-spacing: 0.2em;
 }
 
-.pageText h1 i{
+.pageText-icon{
   color: #ff2770;
   text-shadow: 0 0 5px #ff2770,
   0 0 25px #ff2770;
@@ -597,41 +597,41 @@
 
 .postAuthBox
 {
-    position: relative;
-    width: 600px;
-    height:200px;
-    background: repeating-conic-gradient(from var(--a), #64ff27 0%, #64ff27 5%, transparent 5%, transparent 40%, #64ff27 50%);
-    filter: drop-shadow( 0 15px 50px #000);
-    animation: rotating 4s linear infinite;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.5s;
-    border-radius: 20px;
-    
+  position: relative;
+  width: 700px;
+  height:220px;
+  /* background: repeating-conic-gradient(from var(--a), #64ff27 0%, #64ff27 5%, transparent 5%, transparent 40%, #64ff27 50%);*/
+  filter: drop-shadow( 0 15px 50px #000);
+  /* animation: rotating 4s linear infinite; */ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+  border-radius: 20px;
     
 }
 
 .postAuthBox::before{
-    content: '';
-    position: absolute;
-    width:100%;
-    height:100%;
-    background: repeating-conic-gradient(from var(--a), #45f3ff 0%, #45f3ff 5%, transparent 5%, transparent 40%, #45f3ff 50%);
-    filter: drop-shadow( 0 15px 50px #000);
-    border-radius: 20px;
-    animation: rotating 4s linear infinite;
-    animation-delay: -1s;
+  content: '';
+  position: absolute;
+  width:100%;
+  height:100%;
+  background: repeating-conic-gradient(from var(--a), #64ff27 0%, #64ff27 5%, transparent 5%, transparent 40%, #64ff27 50%);
+  filter: drop-shadow( 0 15px 50px #000);
+  border-radius: 20px;
+  animation: rotating 4s linear infinite;
+  animation-delay: -1s;
+    
 
 }
 
 .postAuthBox::after{
-    content: '';
-    position: absolute;
-    inset: 4 px;
-    background: #2d2d39;
-    border-radius: 15px;
-    border: 8px solid #25252b;
+  content: '';
+  position: absolute;
+  inset: 4px;
+  background: #2d2d39;
+  border-radius: 15px;
+  border: 8px solid #25252b;
 }
 
 .postAuthBox-static
@@ -649,6 +649,7 @@
     border-radius: 20px;
     
     
+    
 }
 
 .postAuthBox-static::before{
@@ -661,6 +662,7 @@
     border-radius: 20px;
     animation: rotating 4s linear infinite;
     animation-delay: -1s;
+    
 
 }
 
@@ -671,6 +673,7 @@
     background: #2d2d39;
     border-radius: 15px;
     border: 8px solid #25252b;
+    
 }
 
 
