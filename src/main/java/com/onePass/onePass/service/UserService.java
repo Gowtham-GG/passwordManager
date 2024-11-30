@@ -4,6 +4,7 @@ import com.onePass.onePass.Request.LoginRequest;
 import com.onePass.onePass.entity.Native_users;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService
 {
@@ -13,6 +14,10 @@ public interface UserService
     LoginRequest getLoginCred(String user_name);
 
 
-    Native_users searchByUserName(String userName);
+    Optional<Native_users> searchByUserName(Long userId);
+
+    Native_users updateUser(Native_users nativeUsers);
+
+    void addVaultToUser(Long userID, String vaultName);
 
 }

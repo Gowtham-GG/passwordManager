@@ -5,7 +5,9 @@ import axios from "axios";
 import {Routes, Route, useNavigate} from 'react-router-dom';
 import { Dropdown } from "bootstrap";
 
-function SavePasswordPage(){
+function SavePasswordPage({ userData }){
+
+    console.log(userData)
 
     const [passwordName, setPasswordName] = React.useState("");
     
@@ -37,13 +39,49 @@ function SavePasswordPage(){
 
     const [vaultName, setVaultName] = React.useState("");
     
+    
 
-    const onChangeHandlerVault = event => {
-        setVaultName(event.target.value);        
-    }
+
+    const [options, setOptions] = React.useState([]); // Store the dropdown options
+  const [selectedValue, setSelectedValue] = React.useState(""); // Store the selected value
+
+  // Fetch data from API
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/api/vaults/byUser/" + userData.userID); // Replace with your API URL
+        setOptions(response.data); // Assuming response.data is a list
+      } catch (error) {
+        console.error("Error fetching options:", error);
+      }
+    };
+
+    fetchData();
+  }, []); // Empty dependency array ensures this runs only once
+
+  // Handle change event
+  const handleChange = (event) => {
+    console.log("Event Target Value:", event.target.value); // Debugging
+    setSelectedValue(event.target.value); // Update selected value in state
+  };
+
+        async function fetchVaultsByUser() {
+            try {
+              const resp = await axios.get("http://localhost:8080/api/vaults/byUser/" + userData.userID);
+              let getVaultsByUser = Object.values(resp.data);
+              console.log("Vaults by user:", getVaultsByUser);
+              return getVaultsByUser; // If you need to use it elsewhere
+            } catch (err) {
+              console.error("Error fetching vaults:", err);
+            }
+          }
+          
+          
+      
 
 
     const navigate = useNavigate();
+
 
     const submit = (e) => {
         e.preventDefault();
@@ -58,7 +96,7 @@ function SavePasswordPage(){
         var siteElement = document.getElementById("site-name");
         var pwElement = document.getElementById("password");
         var rePwElement = document.getElementById("re-type-password");
-        var vaultElement = document.getElementById("vault-dropdown");
+        var vaultElement = document.getElementById("dynamicSelect");
         var submitElement = document.getElementById("submit");
         var titleElement = document.getElementById("loginTitle");
         var authTitleElement = document.getElementById("authTextPreAuth");
@@ -166,6 +204,7 @@ function SavePasswordPage(){
         }  
     }
     console.log(vaultName);
+
     if (vaultName==="Select A Vault") {
 
         isVaultDefault = false;
@@ -207,10 +246,15 @@ function SavePasswordPage(){
         // isValidPW == true & isValidUN == true
         if(isValidPW == true & isValidUN == true & isValidRePW == true & pwMatch === true)
         {
+            console.log(password, siteName, selectedValue, passwordName)        
+            axios.post("http://localhost:8080/api/creds/create", {savedSite: siteName, savedUser: userData.userID, savedCred: password, vaultName: selectedValue, credNickname: passwordName}).then( e =>{
+
             passwordElement.classList.add("postAuth");
             pwElement.classList.add("postAuth");
             rePwElement.classList.add("postAuth");
             submitElement.classList.add("postAuth");
+            vaultElement.classList.add("postAuth");
+            siteElement.classList.add("postAuth");
             // hyperElement1.classList.add("postAuth");
             // hyperElement8962.classList.add("postAuth");
             titleElement.classList.add("postAuth");
@@ -221,26 +265,10 @@ function SavePasswordPage(){
             vaultIconElement.classList.add("authTextPostAuthIconColor");
             boxElement.classList.add("postAuthBox-static");
             boxElement.classList.remove("box-static");
-            // vaultIconElement.classList.add("authTextPostAuth-static");
-            // loginBoxElement.classList.add("postAuthloginBox");
-            // boxElement.classList.add("postAuthBox");
-            // boxElement.classList.remove("box");
-        //     console.log("ClassNames: ",userElement.className,
-        // titleElement.className,authTitleElement.className,hyperElement1.className,
-        // hyperElement2.className,loginBoxElement.className,boxElement.className,
+          
         
-        // pwElement.className,submitElement.className, "Auth : ", authTitleElement.className);
-        // console.log("User Name : " + userName + ", Cred : " + password);
-        // Use the variable name while sending object to backend, make sure variable name is db datamember name
-        // axios.post("http://localhost:8080/api/login", {user_name: vaultName, user_cred: password}).then((resp) =>
-        
-        //     {
-        //         console.log("UserName : ", resp.data);
-        //     }
-        
-        // );
-
         setTimeout(function(){navigate('/dash');},2000);
+        })
 
         }
 
@@ -261,24 +289,33 @@ function SavePasswordPage(){
   href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
-  <div class="pageText authTextPreAuth" id="authTextPreAuth"> <h1><VpnKeyIcon id="vault-icon"/>Vault Created</h1></div>
+  <div class="pageText authTextPreAuth" id="authTextPreAuth"> <h1><VpnKeyIcon id="vault-icon"/>Cred Saved</h1></div>
   <div class="pageText" id = "loginTitle"> <h1><VpnKeyIcon className="authTextPreAuthIconColor" id="vault-icon"/>Save Password</h1></div>
   <div class="inputFields-static">
                                     <input className = "input" id="password-name" type="text" placeholder="Enter Nickname" onChange={onChangeHandler}></input>
                                     <input className = "input" id="site-name" type="text" placeholder="Enter Site Address" onChange={onChangeHandlerSite}></input>
                                     <input className = "input" id="password" type="password" placeholder="Enter Vault Credentials" onChange={onChangeHandlerPW}></input>
                                     <input className = "input" id="re-type-password" type="password" placeholder="Re-Enter Vault Credentials" onChange={onChangeHandlerRePW}></input>
-                                    <br/>
-                                    <select className = "inputSelector" id = "vault-dropdown" placeholder="Select a Vault" value={vaultName} onChange={onChangeHandlerVault}>
-                                          
-                                            <option className = "inputSelector" value = "default" onChange={onChangeHandlerVault}>Select a Vault</option>
-                                            <option className = "inputSelector" value = "value from db 1" onChange={onChangeHandlerVault}>Vault1</option>
-                                            <option className = "inputSelector" value = "value from db 2" onChange={onChangeHandlerVault}>Vault2</option>
+                                    
+                                    <select className = "input"
+                                        id="dynamicSelect"
+                                        value={selectedValue}
+                                        onChange={handleChange}
                                         
-                                    </select>
+                                        >
+                                        <option value="" disabled>
+                                            -- Select an option --
+                                        </option>
+                                        {options.map((option, index) => (
+                                            <option key={index} value={option} className = "options">
+                                            {option}
+                                            </option>
+                                        ))}     
+                                        </select>
+
                                     <br/>
                                     <br/>
-                                    <input class = "submit" type="submit" placeholder="Login" id = "submit" onClick={submit}></input>
+                                    <input class = "submit" type = "submit" placeholder="Remember" id = "submit" onClick={submit}></input>
                                    
                                 </div>
 

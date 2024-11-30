@@ -4,7 +4,7 @@ import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import axios from "axios";
 import {Routes, Route, useNavigate} from 'react-router-dom';
 
-function CreateVaultPage(){
+function CreateVaultPage({ userData }){
 
     const [vaultName, setVaultName] = React.useState("");
     
@@ -27,6 +27,7 @@ function CreateVaultPage(){
     }
     
     const navigate = useNavigate();
+    console.log({userID: userData.userID, vaultID: vaultName})
 
     const submit = (e) => {
         e.preventDefault();
@@ -127,24 +128,14 @@ function CreateVaultPage(){
             pwElement.classList.add("inputInvalid");
         }
         // isValidPW == true & isValidUN == true
+        // console.log(isValidPW == true & isValidUN == true & isValidRePW == true & pwMatch === true)
         if(isValidPW == true & isValidUN == true & isValidRePW == true & pwMatch === true)
         {
-            vaultElement.classList.add("postAuth");
-            pwElement.classList.add("postAuth");
-            rePwElement.classList.add("postAuth");
-            submitElement.classList.add("postAuth");
+            
             // hyperElement1.classList.add("postAuth");
             // hyperElement8962.classList.add("postAuth");
-            titleElement.classList.add("postAuth");
-            authTitleElement.classList.add("authTextPostAuth-static");
-            authTitleElement.classList.remove("authTextPreAuth");
-            authTitleElement.classList.remove("loginText");
-            vaultIconElement.classList.remove("authTextPreAuthIconColor");
-            vaultIconElement.classList.remove("pageText-icon");
-            vaultIconElement.classList.add("authTextPostAuthIconColor");
-            boxElement.classList.add("postAuthBox-static");
-            boxElement.classList.remove("box-static");
-            console.log(vaultIconElement.className);
+            
+            // console.log("Hi : ", vaultIconElement.className);
             // vaultIconElement.classList.add("authTextPostAuth-static");
             // loginBoxElement.classList.add("postAuthloginBox");
             // boxElement.classList.add("postAuthBox");
@@ -165,8 +156,52 @@ function CreateVaultPage(){
         // );
 
         // setTimeout(function(){navigate('/dash');},2000);
+        console.log({vaultName: vaultName, vaultCred: password})
+        console.log("Data : ",{userID: userData.userID, vaultName: vaultName})
+        console.log(vaultName, password);
+        
+        console.log(axios.get("http://localhost:8080/api/vaults/duplicateCheck/"+vaultName))
+        axios.get("http://localhost:8080/api/vaults/duplicateCheck/"+vaultName).then( ifFound => 
 
+            {if(!ifFound.data){
+
+                vaultElement.classList.remove("inputInvalid");
+            
+            axios.post("http://localhost:8080/api/vaults/create",{vaultName: vaultName, vaultCred: password}).then(
+
+                waitTime => {setTimeout(resolve => {
+
+                    (axios.post("http://localhost:8080/api/native_users/add_vault",{userID: userData.userID, vaultName: vaultName}))
+                    vaultElement.classList.add("postAuth");
+            pwElement.classList.add("postAuth");
+            rePwElement.classList.add("postAuth");
+            submitElement.classList.add("postAuth");
+            titleElement.classList.add("postAuth");
+            authTitleElement.classList.add("authTextPostAuth-static");
+            authTitleElement.classList.remove("authTextPreAuth");
+            authTitleElement.classList.remove("loginText");
+            vaultIconElement.classList.remove("authTextPreAuthIconColor");
+            vaultIconElement.classList.remove("pageText-icon");
+            vaultIconElement.classList.add("authTextPostAuthIconColor");
+            boxElement.classList.add("postAuthBox-static");
+            boxElement.classList.remove("box-static");
+                    setTimeout(function(){navigate('/dash');},2000)
+                },5000)}
+
+            )
+            
         }
+        else{
+            console.log("Vault name already found, try different one")
+            vaultElement.classList.add("inputInvalid");
+        }
+        }
+
+        )
+        }
+        
+        
+    
 
 
 

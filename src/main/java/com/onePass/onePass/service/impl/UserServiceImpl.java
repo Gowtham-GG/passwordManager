@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -32,9 +33,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Native_users searchByUserName(String userName)
+    public Optional<Native_users> searchByUserName(Long userId)
     {
-        return nativeUsersRepo.searchByUserName(userName);
+        return nativeUsersRepo.findById(userId);
     }
+
+    @Override
+    public Native_users updateUser(Native_users nativeUsers){
+        return nativeUsersRepo.save(nativeUsers);
+    }
+
+    @Override
+    public void addVaultToUser(Long userID, String vaultName){
+        nativeUsersRepo.addVaultToUser(userID, vaultName);
+    }
+
+
 
 }

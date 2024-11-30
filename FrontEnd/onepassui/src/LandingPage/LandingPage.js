@@ -1,8 +1,9 @@
 import React from "react";
 import Navbar from "../General/Navbar.js";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-function LandingPage() {
+function LandingPage({ userData }) {
 
   const navigate = useNavigate();
 
@@ -13,6 +14,12 @@ function LandingPage() {
     
 }
 
+const [fetchedVaults, setFetchedVaults] = React.useState("");
+
+const onChangeHandlerVaults = event => {
+  setFetchedVaults(event.target.value);        
+}
+
 const moveToSavePasswordPage = (e) => {
 
   e.preventDefault();
@@ -20,14 +27,22 @@ const moveToSavePasswordPage = (e) => {
   
 }
 
+const moveToVaultLookupPage = (e) => {
+
+  e.preventDefault();
+  setTimeout(function(){navigate('/vault-lookup');},2000);
+  
+}
+
+console.log("LAnding: ", userData);
+
+
+
 
   return (
 <div>
-<Navbar/> 
+<Navbar userData={userData}/> 
     <div class="body">
-
-    
-
       <div class="outer">
         <div class="outer-animation">
           <div class="inner">
@@ -55,7 +70,7 @@ const moveToSavePasswordPage = (e) => {
 
         <div class="ring-button-outer" id="button-2"><div class="ring-button-inner"></div></div>
 
-        <div class="ring-button-outer" id="button-4"><div class="ring-button-inner"></div></div>
+        <div class="ring-button-outer" id="button-4" onClick={moveToVaultLookupPage}><div class="ring-button-inner"></div></div>
 
         {/* Lines */}
 
@@ -71,9 +86,9 @@ const moveToSavePasswordPage = (e) => {
         <div class="diagonal-line-1" onClick={moveToSavePasswordPage}></div>
         <div class="info-text" id="save-password" onClick={moveToSavePasswordPage}>Save a Password</div>
 
-        <div class="line-4" id="line-4"></div>
-        <div class="diagonal-line-4"></div>
-        <div class="info-text" id="vault-lookup">Vault Lookup</div>
+        <div class="line-4" id="line-4" onClick={moveToVaultLookupPage}></div>
+        <div class="diagonal-line-4" onClick={moveToVaultLookupPage}></div>
+        <div class="info-text" id="vault-lookup" onClick={moveToVaultLookupPage}>Vault Lookup</div>
 
 
       </div>

@@ -12,7 +12,7 @@ import { ThemeProvider } from "@emotion/react";
 import {Routes, Route, useNavigate} from 'react-router-dom';
 import axios from "axios";
 
-function Login()
+function Login({ onLoginSuccess})
 {
     const [userName, setUserName] = React.useState("");
     
@@ -134,11 +134,18 @@ function Login()
         
             {
                 console.log("UserName : ", resp.data);
+                console.log(resp.data.loginStatus);
+                if (resp.data.loginStatus) {
+                    onLoginSuccess(resp.data);
+                    setTimeout(function(){navigate('/dash');},2000);
+                  }
             }
         
         );
-
-        setTimeout(function(){navigate('/dash');},2000);
+        
+        
+        
+        
 
         }
         // navigate('/dash');

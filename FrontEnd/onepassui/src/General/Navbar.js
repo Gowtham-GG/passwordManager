@@ -12,7 +12,7 @@ import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 
-export default function Navbar() {
+export default function Navbar({ userData }) {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -27,6 +27,8 @@ export default function Navbar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  console.log("Nav: ", userData);
 
   return (
     <Box sx={{ flexGrow: 1 }} className='nav-body'>
@@ -44,6 +46,9 @@ export default function Navbar() {
           </IconButton>
           <Typography className='nav-body-main' variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'left' }}>
             OnePass Manager
+          </Typography>
+          <Typography className='nav-body-main' variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'right' }}>
+            Welcome, {userData.userName}
           </Typography>
           {auth && (
             <div className='nav-body-main'>
