@@ -130,7 +130,7 @@ function Login({ onLoginSuccess})
         pwElement.className,submitElement.className, "Auth : ", authTitleElement.className);
         console.log("User Name : " + userName + ", Cred : " + password);
         // Use the variable name while sending object to backend, make sure variable name is db datamember name
-        axios.post("http://localhost:8080/api/login", {user_name: userName, user_cred: password}).then((resp) =>
+        axios.post("http://localhost:9090/api/login", {user_name: userName, user_cred: password}).then((resp) =>
         
             {
                 console.log("UserName : ", resp.data);

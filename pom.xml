@@ -104,6 +104,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>onepass-build</finalName>
 	</build>
 
 </project>

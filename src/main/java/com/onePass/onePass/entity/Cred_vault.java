@@ -19,7 +19,7 @@ public class Cred_vault {
     private String savedSite;
 
     @Column("saved_user")
-    private Long savedUser;
+    private String savedUser;
 
     @Column("saved_cred")
     private String savedCred;
@@ -30,7 +30,18 @@ public class Cred_vault {
     @Column("cred_nickname")
     private String credNickname;
 
+    @Column("saved_by")
+    private Long userId;
+
     public Cred_vault() {
+    }
+
+    public Cred_vault(String savedSite, Long userId, String savedCred, Long vauldId, String credNickname) {
+        this.savedSite = savedSite;
+        this.userId = userId;
+        this.savedCred = savedCred;
+        this.vaultId = vaultId;
+        this.credNickname = credNickname;
     }
 
     public Long getCredId() {
@@ -45,15 +56,15 @@ public class Cred_vault {
         return savedSite;
     }
 
-    public void setSiteSite(String siteSite) {
-        this.savedSite = siteSite;
+    public void setSavedSite(String savedSite) {
+        this.savedSite = savedSite;
     }
 
-    public Long getSavedUser() {
+    public String getSavedUser() {
         return savedUser;
     }
 
-    public void setSavedUser(Long savedUser) {
+    public void setSavedUser(String savedUser) {
         this.savedUser = savedUser;
     }
 
@@ -81,20 +92,39 @@ public class Cred_vault {
         this.credNickname = credNickname;
     }
 
-    public Cred_vault(String savedSite, Long savedUser, String savedCred, Long vaultId, String credNickname) {
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Cred_vault(Long credId, String savedSite, Long userId, String savedCred, Long vaultId, String credNickname) {
+        this.credId = credId;
         this.savedSite = savedSite;
-        this.savedUser = savedUser;
+        this.userId = userId;
         this.savedCred = savedCred;
         this.vaultId = vaultId;
         this.credNickname = credNickname;
     }
 
-    public Cred_vault(Long credId, String savedSite, Long savedUser, String savedCred, Long vaultId, String credNickname) {
+    public Cred_vault(Long credId, String savedSite, String savedUser, String savedCred, Long vaultId, String credNickname, Long userId) {
         this.credId = credId;
         this.savedSite = savedSite;
         this.savedUser = savedUser;
         this.savedCred = savedCred;
         this.vaultId = vaultId;
         this.credNickname = credNickname;
+        this.userId = userId;
+    }
+
+    public Cred_vault(String savedSite, String savedUser, String savedCred, Long vaultId, String credNickname, Long userId) {
+        this.savedSite = savedSite;
+        this.savedUser = savedUser;
+        this.savedCred = savedCred;
+        this.vaultId = vaultId;
+        this.credNickname = credNickname;
+        this.userId = userId;
     }
 }

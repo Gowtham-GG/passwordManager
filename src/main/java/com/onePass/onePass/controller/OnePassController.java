@@ -3,6 +3,7 @@ package com.onePass.onePass.controller;
 
 import com.onePass.onePass.Request.AddVaultRequest;
 import com.onePass.onePass.Request.LoginRequest;
+import com.onePass.onePass.Request.PasswordsForVaultRequest;
 import com.onePass.onePass.Request.SavePasswordRequest;
 import com.onePass.onePass.Response.LoginResponse;
 import com.onePass.onePass.entity.Cred_vault;
@@ -20,7 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-@CrossOrigin(origins = {"https://localhost","http://localhost:3000"})
+@CrossOrigin(origins = {"https://localhost","http://localhost:3000","*","http://localhost"})
 @RestController
 @RequestMapping("/api")
 public class OnePassController {
@@ -61,7 +62,7 @@ public class OnePassController {
     @PostMapping("/login")
     public ResponseEntity<Object> getData(@RequestBody LoginRequest loginCred) {
 
-        //Decorator Pattern used. Also prevents SQL Injection.
+        //Decorator Pattern used ig. Also prevents SQL Injection.
         LoginRequest fetchUser = loginCall(loginCred.getUser_name());
         LoginResponse validateUser;
 
@@ -134,18 +135,24 @@ public class OnePassController {
     }
 
     public Long getVauldId(String vaultName){
-        System.out.println(vaultName    );
+//        System.out.println(vaultName    );
         return vaultReferencesServiceImpl.getVaultIdByName(vaultName);
     }
 
     /****************************Credentials End Point**************************/
 
+    @PostMapping("/creds/byUserAndVault/")
+    public List<Cred_vault> getAllCredsByUser(@RequestBody PasswordsForVaultRequest passwordsForVaultRequest){
+        return credServiceImpl.retrieveCredsForUserAndVault(passwordsForVaultRequest.getUserId(), getVauldId(passwordsForVaultRequest.getVaultName()));
+    }
 
 
     @PostMapping("/creds/create")
     public void saveAPassword(@RequestBody SavePasswordRequest savePasswordRequest) {
 
-        Cred_vault credVault = new Cred_vault(savePasswordRequest.getSavedSite(), savePasswordRequest.getSavedUser(), savePasswordRequest.getSavedCred(), getVauldId(savePasswordRequest.getvaultName()), savePasswordRequest.getCredNickname());
+//        Cred_vault credVault = new Cred_vault(savePasswordRequest.getSavedSite(), savePasswordRequest.getSavedUser(), savePasswordRequest.getSavedCred(), getVauldId(savePasswordRequest.getvaultName()), savePasswordRequest.getCredNickname(), savePasswordRequest.getUserID());
+        Cred_vault credVault = new Cred_vault(savePasswordRequest.getSavedSite(), savePasswordRequest.getSavedUser(), savePasswordRequest.getSavedCred(), getVauldId(savePasswordRequest.getVaultName()), savePasswordRequest.getCredNickname(), savePasswordRequest.getUserID());
+
         credServiceImpl.recordAPassword(credVault);
     }
 

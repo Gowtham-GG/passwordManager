@@ -23,6 +23,13 @@ function SavePasswordPage({ userData }){
         setSiteName(event.target.value);        
     }
 
+    const [siteUserName, setSiteUserName] = React.useState("");
+    
+
+    const onChangeHandlerSiteUser = event => {
+        setSiteUserName(event.target.value);        
+    }
+
     const [password, setPassword] = React.useState("");
 
     const onChangeHandlerPW = event => {
@@ -247,7 +254,7 @@ function SavePasswordPage({ userData }){
         if(isValidPW == true & isValidUN == true & isValidRePW == true & pwMatch === true)
         {
             console.log(password, siteName, selectedValue, passwordName)        
-            axios.post("http://localhost:8080/api/creds/create", {savedSite: siteName, savedUser: userData.userID, savedCred: password, vaultName: selectedValue, credNickname: passwordName}).then( e =>{
+            axios.post("http://localhost:8080/api/creds/create", {savedSite: siteName, userId: userData.userID,savedUser:siteUserName, savedCred: password, vaultName: selectedValue, credNickname: passwordName}).then( e =>{
 
             passwordElement.classList.add("postAuth");
             pwElement.classList.add("postAuth");
@@ -294,6 +301,7 @@ function SavePasswordPage({ userData }){
   <div class="inputFields-static">
                                     <input className = "input" id="password-name" type="text" placeholder="Enter Nickname" onChange={onChangeHandler}></input>
                                     <input className = "input" id="site-name" type="text" placeholder="Enter Site Address" onChange={onChangeHandlerSite}></input>
+                                    <input className = "input" id="site-name" type="text" placeholder="Enter Site Username" onChange={onChangeHandlerSiteUser}></input>
                                     <input className = "input" id="password" type="password" placeholder="Enter Vault Credentials" onChange={onChangeHandlerPW}></input>
                                     <input className = "input" id="re-type-password" type="password" placeholder="Re-Enter Vault Credentials" onChange={onChangeHandlerRePW}></input>
                                     

@@ -1,14 +1,10 @@
 package com.onePass.onePass.Request;
 
 public class SavePasswordRequest {
-
-    
-    private Long credId;
-
     
     private String savedSite;
 
-    private Long savedUser;
+    private String savedUser;
 
     private String savedCred;
 
@@ -16,15 +12,38 @@ public class SavePasswordRequest {
 
     private String credNickname;
 
+    private Long userID;
+
+    public void setSavedSite(String savedSite) {
+        this.savedSite = savedSite;
+    }
+
+    public String getVaultName() {
+        return vaultName;
+    }
+
+    public void setVaultName(String vaultName) {
+        this.vaultName = vaultName;
+    }
+
+    public Long getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Long userID) {
+        this.userID = userID;
+    }
+
+    public SavePasswordRequest(String savedSite, String savedUser, String savedCred, String vaultName, String credNickname, Long userID) {
+        this.savedSite = savedSite;
+        this.savedUser = savedUser;
+        this.savedCred = savedCred;
+        this.vaultName = vaultName;
+        this.credNickname = credNickname;
+        this.userID = userID;
+    }
+
     public SavePasswordRequest() {
-    }
-
-    public Long getCredId() {
-        return credId;
-    }
-
-    public void setCredId(Long credId) {
-        this.credId = credId;
     }
 
     public String getSavedSite() {
@@ -35,11 +54,11 @@ public class SavePasswordRequest {
         this.savedSite = siteSite;
     }
 
-    public Long getSavedUser() {
+    public String getSavedUser() {
         return savedUser;
     }
 
-    public void setSavedUser(Long savedUser) {
+    public void setSavedUser(String savedUser) {
         this.savedUser = savedUser;
     }
 
@@ -51,14 +70,6 @@ public class SavePasswordRequest {
         this.savedCred = savedCred;
     }
 
-    public String getvaultName() {
-        return vaultName;
-    }
-
-    public void setvaultName(String vaultName) {
-        this.vaultName = vaultName;
-    }
-
     public String getCredNickname() {
         return credNickname;
     }
@@ -67,16 +78,7 @@ public class SavePasswordRequest {
         this.credNickname = credNickname;
     }
 
-    public SavePasswordRequest(String savedSite, Long savedUser, String savedCred, String vaultName, String credNickname) {
-        this.savedSite = savedSite;
-        this.savedUser = savedUser;
-        this.savedCred = savedCred;
-        this.vaultName = vaultName;
-        this.credNickname = credNickname;
-    }
-
-    public SavePasswordRequest(Long credId, String savedSite, Long savedUser, String savedCred, String vaultName, String credNickname) {
-        this.credId = credId;
+    public SavePasswordRequest(String savedSite, String savedUser, String savedCred, String vaultName, String credNickname) {
         this.savedSite = savedSite;
         this.savedUser = savedUser;
         this.savedCred = savedCred;

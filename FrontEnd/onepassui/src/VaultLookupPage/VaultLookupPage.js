@@ -2,15 +2,56 @@ import React, { useState } from "react";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import EditIcon from "@mui/icons-material/Edit";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
+import axios from "axios";
 
-function VaultLookupPage() {
+function VaultLookupPage({userData}) {
+
+    const [options, setOptions] = React.useState([]); // Store the dropdown options
+  const [selectedValue, setSelectedValue] = React.useState(""); 
+
     // Use state to manage the list of items
     const [list, setList] = useState([
-        { nickname: "Netflix", url: "www.netflix.com", user: "2013157", password: "bat@abel", isEditable: false },
-        { nickname: "Prime", url: "www.primevideo.com", user: "rajipalani2002@yahoo.co.in", password: "bat@abel", isEditable: false },
-        { nickname: "Bandhan", url: "bandhan.al.com", user: "2003506", password: "ahtews", isEditable: false },
-        { nickname: "AMH", url: "www2.knowledgecentre.swift.com", user: "2013157", password: "bat@abel", isEditable: false },
-    ]);
+        ]);
+
+    const handleChange = (event) => {
+        console.log("Event Target Value:", event.target.value); // Debugging
+        setSelectedValue(event.target.value); // Update selected value in state
+        
+
+        
+            const fetchDataVault = async () => {
+              try {
+                console.log(event.target.value)
+                const response = await axios.post("http://localhost:8080/api/creds/byUserAndVault/",{userId : userData.userID, vaultName : event.target.value}); // Replace with your API URL
+                // console.log(response.data)
+                setList(response.data); // Assuming response.data is a list
+                console.log(list);
+              } catch (error) {
+                console.error("Error fetching options:", error);
+              }
+            };
+        
+            fetchDataVault();
+          
+
+
+      };
+
+     // Fetch data from API
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/api/vaults/byUser/" + userData.userID); // Replace with your API URL
+        console.log(response.data)
+        setOptions(response.data); // Assuming response.data is a list
+      } catch (error) {
+        console.error("Error fetching options:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  
 
     // Toggle visibility of password and username
     const togglePasswordVisibility = (index, type) => {
@@ -52,6 +93,23 @@ function VaultLookupPage() {
                         Credentials
                     </h1>
                 </div>
+        <div className="pageTextLookupSelect">
+                <select className = "input"
+                                        id="dynamicSelect"
+                                        value={selectedValue}
+                                        onChange={handleChange}
+                                        
+                                        >
+                                        <option value="" disabled>
+                                            -- Select an option --
+                                        </option>
+                                        {options.map((option, index) => (
+                                            <option key={index} value={option} className = "options">
+                                            {option}
+                                            </option>
+                                        ))}     
+                                        </select>
+                                        </div>
 
                 <div className="table">
                     <table>
@@ -66,12 +124,12 @@ function VaultLookupPage() {
                         <tbody>
                             {list.map((item, index) => (
                                 <tr key={index}>
-                                    <td className="nickname">{item.nickname}</td>
-                                    <td className="secrets">{item.url}</td>
+                                    <td className="nickname">{item.credNickname}</td>
+                                    <td className="secrets">{item.savedSite}</td>
                                     <td className="secrets">
                                         <input
                                             type="text"
-                                            value={item.user}
+                                            value={item.savedUser}
                                             className="inputTable"
                                             id={`input_user_${index}`}
                                             readOnly={!item.isEditable}
@@ -88,7 +146,7 @@ function VaultLookupPage() {
                                     <td className="secrets">
                                         <input
                                             type="password"
-                                            value={item.password}
+                                            value={item.savedCred}
                                             className="inputTable"
                                             id={`input_password_${index}`}
                                             readOnly={!item.isEditable}
